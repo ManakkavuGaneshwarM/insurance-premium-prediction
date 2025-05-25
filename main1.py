@@ -1,8 +1,11 @@
+#Importing necessary libraries
 import streamlit as st
 from prediction_helper1 import predict
 
+#App title 
 st.title("Shield Insurance Premium Prediction App")
 
+#Defining a variable to save various options in categorical features that users select
 categorical_option = {
     'Gender': ['Male', 'Female'],
     'Marital Status': ['Unmarried', 'Married'],
@@ -18,6 +21,7 @@ categorical_option = {
     'Insurance Plan': ['Bronze', 'Silver', 'Gold']
 }
 
+#App designing 
 row1 = st.columns(3)
 row2 = st.columns(3)
 row3 = st.columns(3)
@@ -55,7 +59,7 @@ with row4[2]:
 with row5[0]:
     stress_level = st.selectbox("Stress Level", categorical_option['Stress Level'])
 
-#data 
+#Input data used for prediction 
 input_dict = {
     'Age': age,
     'Number of Dependants': number_of_dependants,
@@ -72,6 +76,7 @@ input_dict = {
     'Stress Level': stress_level 
 }
 
+#Prediction 
 if st.button('Predict'):
     prediction = predict(input_dict)
     st.success(f"Predicted Annual Premium: Rs.{prediction}")
